@@ -1,0 +1,52 @@
+Welcome to GravityApp by Garrett Kunkler
+ 
+Overview
+ 
+This is a program designed to simulate gravitational fields between planets.
+ The left side of the window is a field for placing masses and viewing their interactions
+ The program is written in Java during the 2019-2020 school year
+ 
+Masses
+ 
+This application works by creating stationary(red) and moving(black) masses.
+The red masses cannot move, but the black masses do.
+The radius of the masses is proportional to its mass
+	-Minimum radius = 2
+	-Maximum radius = 10
+If two masses get close enough, they will combine into one mass.
+	-If one of the masses is a red mass, 
+	 then the mass of the black mass will be added to the red mass and the black mass will be removed
+	-If both masses are black, then one of them(it doesn't matter) will be deleted
+	 and the mass of the deleted mass will be added to the other mass
+	-New x and y velocities are calculated using v = ( v1m1 + v2m2 )/( m1 + m2 )
+	 for a perfectly inelastic collision
+ 
+Control Panel 
+ 
+The mass slider changes the mass of the masses when you place them. 
+Depending on whether the moving mass or pinned mass toggle is selected,
+ that type of mass will be placed onto the gray gravity board
+ 
+The max speed slider allows you to control how fast the moving masses can travel.
+If this slider is at its max value, there will be no max speed.
+This slider is useful for:
+	-setting the velocity of the moving masses to zero.
+	-preventing the moving masses from traveling too far in one frame.
+	-aiding the viewing experience
+	 
+The vector field will show and point in the direction of force due to the stationary masses.
+	-Is not effected by moving masses
+	-Inaccuracies are due to rounding errors
+ 
+The wall toggle button can turn on and off the walls.
+If the moving masses travel off of the screen when the walls are off,
+ they will be removed
+  
+The clear all button removes all stationary and moving masses.
+ 
+Details
+
+-The max number of stationary masses is 10
+-The max number of moving masses is 3
+ 
+Jan 2020
