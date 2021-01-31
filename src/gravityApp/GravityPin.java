@@ -59,9 +59,9 @@ public class GravityPin extends Object {
 		}
 		
 		if(x2-x1>0) {
-			return Math.atan((y2-y1)/(x2-x1));
+			return Math.atan((float)(y2-y1)/(x2-x1));
 		}
-		return Math.PI+Math.atan((y2-y1)/(x2-x1));
+		return Math.PI+Math.atan((float)(y2-y1)/(x2-x1));
 	}
 	
 	public double getXComp(double force, double angle) {

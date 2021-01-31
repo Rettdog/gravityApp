@@ -124,9 +124,9 @@ public class MainObject extends Object{
 		}
 		
 		if(xPull>0) {
-			return Math.atan((yPull)/(xPull));
+			return Math.atan((float)(yPull)/(xPull));
 		}
-		return Math.PI+Math.atan((yPull)/(xPull));
+		return Math.PI+Math.atan((float)(yPull)/(xPull));
 	}
 	
 	public void draw(Graphics g) {
