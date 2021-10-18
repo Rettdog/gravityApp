@@ -54,12 +54,13 @@ public class ObjectManager {
 		for(int i = 0;i<movingPins.size();i++) {
 			for(int j = 0;j<movingPins.size();j++) {
 				if(i!=j) {
-					if(movingPins.get(i).radius>movingPins.get(j).radius) {
-						//System.out.println(movingPins.get(i).radius);
-						collisionDistance = movingPins.get(i).radius*1.5;
-					}else {
-						collisionDistance = movingPins.get(j).radius*1.5;
-					}
+//					if(movingPins.get(i).radius>movingPins.get(j).radius) {
+//						//System.out.println(movingPins.get(i).radius);
+//						collisionDistance = movingPins.get(i).radius*1.5;
+//					}else {
+//						collisionDistance = movingPins.get(j).radius*1.5;
+//					}
+					collisionDistance=5;
 					//System.out.println(collisionDistance);
 					if(getDistance(movingPins.get(i).x,movingPins.get(i).y,movingPins.get(j).x,movingPins.get(j).y)<collisionDistance*3) {
 						if(!saveI[i]) {
@@ -181,9 +182,11 @@ public class ObjectManager {
 	}
 	
 	public void updateArrows() {
+//		System.out.println(gravityPins.size());
+//		System.out.println(movingPins.size());
 		for(int i = 0;i<arrowField.length;i++) {
 			for(int j = 0;j<arrowField[i].length;j++) {
-				for(int k = 0;k<gravityPins.size();k++) {
+				for(int k = 0;k<gravityPins.size()+movingPins.size();k++) {
 					arrowField[i][j].xList[k] = 0;
 					arrowField[i][j].yList[k] = 0;
 				}
@@ -195,8 +198,21 @@ public class ObjectManager {
 		for(int i = 0;i<arrowField.length;i++) {
 			for(int j = 0;j<arrowField[i].length;j++) {
 				for(int k = 0;k<gravityPins.size();k++) {
-					arrowField[i][j].xList[k] = gravityPins.get(k).getXForce((int)arrowField[i][j].x, (int)arrowField[i][j].y, 1);
-					arrowField[i][j].yList[k] = gravityPins.get(k).getYForce((int)arrowField[i][j].x, (int)arrowField[i][j].y, 1);
+					arrowField[i][j].xList[k] += gravityPins.get(k).getXForce((int)arrowField[i][j].x, (int)arrowField[i][j].y, 1);
+					arrowField[i][j].yList[k] += gravityPins.get(k).getYForce((int)arrowField[i][j].x, (int)arrowField[i][j].y, 1);
+				}
+				
+//				arrowField[i][j].update();
+				
+			}
+		}
+		
+		for(int i = 0;i<arrowField.length;i++) {
+			for(int j = 0;j<arrowField[i].length;j++) {
+				for(int k = 0;k<movingPins.size();k++) {
+					
+					arrowField[i][j].xList[k] += movingPins.get(k).getXForce((int)arrowField[i][j].x, (int)arrowField[i][j].y, 1);
+					arrowField[i][j].yList[k] += movingPins.get(k).getYForce((int)arrowField[i][j].x, (int)arrowField[i][j].y, 1);
 				}
 				
 				arrowField[i][j].update();

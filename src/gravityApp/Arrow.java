@@ -18,8 +18,9 @@ public class Arrow extends Object{
 	double k = 2;
 	double sqrt2 = Math.sqrt(2);
 	
-	double[] xList = new double[10];
-	double[] yList = new double[10];
+	//length is 10+3 (max number of pins found in object manager)
+	double[] xList = new double[13];
+	double[] yList = new double[13];
 	
 	public Arrow(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -65,8 +66,13 @@ public class Arrow extends Object{
 		if(xPull==0&&yPull==0) {
 			g.fillOval((int)x, (int)y, 1, 1);
 		}else {
+			
+			
+		//System.out.println(width/2*Math.cos(angle));
+		g.drawLine((int)x, (int)y, x+(int)(width/2*Math.cos(angle)), y+(int)(height/2*Math.sin(angle)));
+		//g.drawLine((int)x, (int)y, (int)(x+width/2*Math.cos(angle)), (int)(y+height/2*Math.sin(angle)));
 		
-		g.drawLine((int)x, (int)y, (int) (x+width/2*Math.cos(angle)), (int) (y+height/2*Math.sin(angle)));
+		
 		Polygon p = new Polygon(xTips, yTips, 3);
 		
 		//Nialls attempt at arrows
@@ -87,6 +93,7 @@ public class Arrow extends Object{
 	}
 	
 	public void setArrowTipLength() {
+		
 		arrowTipDistance = Math.sqrt(4*Math.pow(k, 2)-10*k*sqrt2+25);
 	}
 	

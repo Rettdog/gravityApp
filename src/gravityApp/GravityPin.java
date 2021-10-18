@@ -52,16 +52,16 @@ public class GravityPin extends Object {
 	
 	public double getAngle(int x1, int y1, int x2, int y2) {
 		if(x2==x1) {
-			if(y1-y2<0) {
+			if(y2-y1<0) {
 				return -Math.PI/2;
 			}
 			return Math.PI/2;
 		}
 		
 		if(x2-x1>0) {
-			return Math.atan((float)(y2-y1)/(x2-x1));
+			return Math.atan(((double)(y2-y1))/(x2-x1));
 		}
-		return Math.PI+Math.atan((float)(y2-y1)/(x2-x1));
+		return Math.PI+Math.atan(((double)(y2-y1))/(x2-x1));
 	}
 	
 	public double getXComp(double force, double angle) {
@@ -76,10 +76,10 @@ public class GravityPin extends Object {
 	
 	public void draw(Graphics g) {
 		//int radius;
-		if(mass>40) {
+		if(mass>20) {
 			radius = width;
 		}else {
-			radius = (int) (width*mass/40);
+			radius = (int) (width*mass/20);
 			if(radius<2) {
 				radius = 2;
 			}

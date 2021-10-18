@@ -40,6 +40,7 @@ public class GravityPanel extends JPanel implements MouseListener, ActionListene
 		background = new Background(0,0,Gravity_Circle_Demo.getPanelWidth(),Gravity_Circle_Demo.getHeight());
 		manager = new ObjectManager();
 		followMouse = false;
+		//manager.addPin(100, 100, 1, false);
 	}
 	
 	//public static MainObject getObject() {

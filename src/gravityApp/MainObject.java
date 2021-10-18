@@ -35,6 +35,8 @@ public class MainObject extends Object{
 		
 	}
 	
+	
+	
 	public void update() {
 		if(Gravity_Circle_Demo.gravityPanel.state!=State.DRIFT_MODE) {
 		xAcceleration = 0;
@@ -91,6 +93,34 @@ public class MainObject extends Object{
 	
 	}
 	
+	public double getXForce(int objX, int objY, double objMass) {
+		
+		//int objX = GravityPanel.getObject().x;
+		//int objY = GravityPanel.getObject().y;
+		//double objMass = GravityPanel.getObject().mass;
+		double r = getDistance((int)x,(int)y,objX, objY);
+		double force = G*mass*objMass/Math.pow(r, 2)*multiplier;
+		double angle = getAngle(objX-x,objY-y);
+		double xForce = getXComp(force, angle);
+		//double yForce = getYComp(force, angle);
+		//System.out.println(xForce);
+		return xForce;
+		
+	}
+	public double getYForce(int objX, int objY, double objMass) {
+		//int objX = GravityPanel.getObject().x;
+		//int objY = GravityPanel.getObject().y;
+		//double objMass = GravityPanel.getObject().mass;
+		double r = getDistance((int)x,(int)y,objX, objY);
+		double force = G*mass*objMass/Math.pow(r, 2)*multiplier;
+		double angle = getAngle(objX-x,objY-y);
+		//System.out.println(angle);
+		double yForce = getYComp(force, angle);
+		//double yForce = getYComp(force, angle);
+		
+		return yForce;
+	}
+	
 	public double getXAccel(int objX, int objY){
 		
 		double r = getDistance((int)x,(int)y,objX, objY);
@@ -114,19 +144,30 @@ public class MainObject extends Object{
 	public double getDistance(int x1, int y1, int x2, int y2) {
 		return  Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
 	}
+
+	
+	public double getYComp(double force, double angle) {
+		//System.out.println("yComp: "+(Math.sin(angle)*force));
+		return -Math.sin(angle)*force;
+	}
+	
+	public double getXComp(double force, double angle) {
+		
+		return -Math.cos(angle)*force;
+	}
 	
 	public double getAngle(double xPull, double yPull) {
 		if(xPull==0) {
-			if(yPull<0) {
+			if(yPull>0) {
 				return Math.PI/2;
 			}
 			return -Math.PI/2;
 		}
 		
 		if(xPull>0) {
-			return Math.atan((float)(yPull)/(xPull));
+			return Math.atan(((double)(yPull))/(xPull));
 		}
-		return Math.PI+Math.atan((float)(yPull)/(xPull));
+		return Math.PI+Math.atan(((double)(yPull))/(xPull));
 	}
 	
 	public void draw(Graphics g) {
